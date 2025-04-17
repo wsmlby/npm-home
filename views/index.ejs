@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        hide = function (e) {
+            e.style.display = 'none';
+        }
+    </script>
+    <style>
+        .fallback-img,
+        .real-img {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+        }
+        .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .fallback-img {
+            z-index: 0;
+        }
+
+        .real-img {
+            z-index: 1;
+        }
+
+        .img-container {
+            position: relative;
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto gap-4">
+        <%for (const server of rst) { %>
+            <div class="server bg-black text-white shadow-md rounded-lg p-4 m-4">
+                <h2 class="text-xl font-bold mb-2">
+                    <a href='<%=  server.murl %>'><%= server.name %></a>
+                </h2>
+                <div class="sites space-y-2 flex flex-wrap auto-rows-max">
+                    <%for (const site of server.sites) { %>
+                        <div
+                            class="site w-full  lg:w-1/2 xl:w-1/3 2xl:w-1/4 h-auto items-center justify-between hover:bg-gray-800 rounded-lg p-2 grid grid-cols-8">
+                            <a href="<%= 'https://' + site.hosts[0].host %>" target="_blank" rel="noopener noreferrer"
+                                class="col-span-4">
+                                <% if (site.icon) { %>
+                                    <img class="col-span-2 icon"
+                                        src="<%= site.icon || ('https://' + site.hosts[0].host + '/favicon.ico') %>"
+                                        alt="Real" onerror="javascript:hide(this)" loading="lazy">
+                                    <% } else { %>
+                                        <div class="img-container col-span-2">
+                                            <img class="fallback-img" src="https://github.com/favicon.ico"
+                                                alt="Fallback">
+                                            <img class="real-img"
+                                                src="<%= site.icon || ('https://' + site.hosts[0].host + '/favicon.ico') %>"
+                                                alt="Real" onerror="javascript:hide(this)" loading="lazy">
+                                        </div>
+                                    <% } %>
+
+                                    <p class="col-span-2"><%= site.title || site.hosts[0].suffixed %></p>
+                            </a>
+                            <div class="col-span-4 grid grid-cols-2">
+                                <%for (const host of site.hosts) { %>
+                                    <p class="text-gray-500 col-span-1"><a href="<%= 'https://' + host.host %>" target="_blank"
+                                            rel="noopener noreferrer" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500">
+                                            <%= host.suffixed %>
+                                        </a></p>
+                                    <%} %>
+                            </div>
+                        </div>
+                        <%} %>
+                </div>
+            </div>
+            <%} %>
+    </div>
+</body>
+
+</html>

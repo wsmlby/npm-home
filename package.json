@@ -1,0 +1,14 @@
+{
+  "name": "npm-home",
+  "version": "0.0.1",
+  "description": "Create a nice homepage from your local NPMs(Nginx Proxy Manager).",
+  "main": "index.js",
+  "repository": "git@github.com:wsmlby/npm-home.git",
+  "author": "Bingyan Liu <wsmlby@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "node-html-parser": "^7.0.1"
+  }
+}
