@@ -30,6 +30,13 @@ first, create a mapping file somewhere contains:
     },
 ]
 ```
+
+Suffixes and fetch_info are optional:
+
+1. Suffixes: the suffixes to remove for display
+2. fetch_info: fetch favicon and title if true
+
+
 Run this on docker:
 `docker run -v /<pathtoyourjsonfolder>/mapping.json:/etc/npm_home_mapping.json wsmlby/npmhome`
 
