@@ -163,6 +163,7 @@ Promise.all(instances.map((instance) => instance.init_tokens())).then(() => {
             res.render("index", { 'rst': rst });
         });
     })
+    app.use(express.static('public'))
     app.set('view engine', 'ejs')
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}`)
