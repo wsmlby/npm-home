@@ -2,7 +2,7 @@
 create home page from nginx proxy manager (NPM)
 
 # Screenshot
-npmhome.png
+![alt text](https://github.com/wsmlby/npm-home/blob/main/npmhome.png?raw=true)
 
 # RUN
 first, create a mapping file somewhere contains:
@@ -31,7 +31,7 @@ first, create a mapping file somewhere contains:
 ]
 ```
 Run this on docker:
-`docker run -v /<pathtoyourjsonfolder>/mapping.json:/etc/npm_home_mapping.json npmhome`
+`docker run -v /<pathtoyourjsonfolder>/mapping.json:/etc/npm_home_mapping.json wsmlby/npmhome`
 
 Goto http://localhost:3000 to visit your new homepage :)
 
